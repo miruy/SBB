@@ -4,6 +4,7 @@ import babo.yurim.sbb.answer.Answer;
 import babo.yurim.sbb.answer.AnswerRepository;
 import babo.yurim.sbb.question.Question;
 import babo.yurim.sbb.question.QuestionRepository;
+import babo.yurim.sbb.question.QuestionService;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,9 @@ class SbbApplicationTests {
 
     @Autowired
     private AnswerRepository answerRepository;
+
+    @Autowired
+    private QuestionService questionService;
 
     /*  질문 데이터 관리 */
     // insert 예제
@@ -138,16 +142,26 @@ class SbbApplicationTests {
 //    }
 
     // select - 질문으로 여러 답변 조회 예제
-    @Transactional // DB 세션이 종료되지 않게 설정
+//    @Transactional // DB 세션이 종료되지 않게 설정
+//    @Test
+//    void testJpa() {
+//        Optional<Question> oq = this.questionRepository.findById(3);
+//        assertTrue(oq.isPresent());
+//        Question q = oq.get();
+//
+//        List<Answer> answerList = q.getAnswerList(); // @Transactional 없으면 여기서 에러
+//        assertEquals(1, answerList.size());
+//        assertEquals("네 자동으로 생성됩니다.", answerList.get(0).getContent());
+//    }
+
+    // 대량 데이터 만들기 예제
     @Test
     void testJpa() {
-        Optional<Question> oq = this.questionRepository.findById(3);
-        assertTrue(oq.isPresent());
-        Question q = oq.get();
-
-        List<Answer> answerList = q.getAnswerList(); // @Transactional 없으면 여기서 에러
-        assertEquals(1, answerList.size());
-        assertEquals("네 자동으로 생성됩니다.", answerList.get(0).getContent());
+        for (int i = 1; i <= 300; i++) {
+            String subject = String.format("테스트 데이터입니다:[%03d]", i);
+            String content = "내용무";
+            this.questionService.create(subject, content);
+        }
     }
 
 }

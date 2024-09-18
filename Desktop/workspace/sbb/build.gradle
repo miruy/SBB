@@ -21,22 +21,23 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
 
-    // lombok 라이브러리
+    // lombok
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
 
     // H2 데이터베이스
     runtimeOnly 'com.h2database:h2'
 
-    // JPA 라이브러리
+    // JPA
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 
-    // JUnit 라이브러리
+    // JUnit
     testImplementation 'org.junit.jupiter:junit-jupiter'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
-    // thymeleaf 라이브러리
+    // thymeleaf
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect'
 }
